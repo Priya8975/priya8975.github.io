@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Priyanka More - software engineer building AI systems and the backend infrastructure behind them. MS Computer Engineering, Stony Brook, December 2026.">
+<meta property="og:title" content="Priyanka More - Software Engineer">
+<meta property="og:description" content="AI systems and the backend infrastructure behind them. Available January 2027.">
+<meta property="og:type" content="website">
+<style>html{-webkit-text-size-adjust:100%}img{max-width:100%}body{margin:0}[hidden]{display:none!important}</style>
+<title>Priyanka More - Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #FFFFFF;
+    --surface: #F6F8FB;
+    --raised: #FFFFFF;
+    --ink: #0B1220;
+    --muted: #5A6577;
+    --faint: #8B95A6;
+    --line: #E2E7EF;
+    --accent: #1D4ED8;
+    --accent-ink: #1E40AF;
+    --accent-soft: #EAF1FE;
+    --signal: #B45309;
+    --signal-soft: #FDF3E4;
+    --display: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    --shadow: 0 1px 2px rgba(11,18,32,.04), 0 10px 28px rgba(11,18,32,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #0B1220;
+      --surface: #111A2B;
+      --raised: #131D30;
+      --ink: #E9EDF5;
+      --muted: #98A3B8;
+      --faint: #6E7B91;
+      --line: #223047;
+      --accent: #7AA2FF;
+      --accent-ink: #A6C0FF;
+      --accent-soft: #16233C;
+      --signal: #E0A94C;
+      --signal-soft: #2A2416;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0B1220;
+    --surface: #111A2B;
+    --raised: #131D30;
+    --ink: #E9EDF5;
+    --muted: #98A3B8;
+    --faint: #6E7B91;
+    --line: #223047;
+    --accent: #7AA2FF;
+    --accent-ink: #A6C0FF;
+    --accent-soft: #16233C;
+    --signal: #E0A94C;
+    --signal-soft: #2A2416;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent-ink); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  .shell { max-width: 1040px; margin: 0 auto; padding-inline: 20px; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1040px; margin: 0 auto; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; padding: 6px 9px; border-radius: 3px;
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--accent-soft); }
+  .nav-links a.active { color: var(--accent-ink); background: var(--accent-soft); }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: 60px 42px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 4.3rem); line-height: 1.0; letter-spacing: -0.035em;
+    margin: 0 0 20px; text-wrap: balance;
+  }
+  .lede { font-size: clamp(1.08rem, 2.4vw, 1.3rem); line-height: 1.5; margin: 0 0 24px; max-width: 58ch; }
+  .lede strong { font-weight: 600; }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+  .badge {
+    font-family: var(--mono); font-size: 12px; padding: 5px 11px;
+    border: 1px solid var(--line); border-radius: 100px; background: var(--surface); color: var(--muted);
+  }
+  .badge.live { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+  .badge.live::before {
+    content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-right: 7px; vertical-align: 1px;
+  }
+
+  .trace { display: block; width: 100%; height: 40px; margin-bottom: 34px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .stat { background: var(--surface); padding: 16px 18px; }
+  .stat b {
+    display: block; font-family: var(--display); font-weight: 600; font-size: 1.55rem; color: var(--accent-ink);
+    letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1;
+  }
+  .stat span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+  /* ---------- sections ---------- */
+  section { padding-block: 54px; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
+  h2 {
+    font-family: var(--display); font-weight: 600; font-size: 1.6rem;
+    letter-spacing: -0.02em; margin: 0;
+  }
+  .sec-note { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+
+  /* ---------- filters ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+  .filter {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em;
+    padding: 6px 12px; border: 1px solid var(--line); background: var(--surface);
+    color: var(--muted); border-radius: 100px; cursor: pointer;
+  }
+  .filter:hover { color: var(--ink); border-color: var(--accent); }
+  .filter[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+
+  /* ---------- project cards ---------- */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card {
+    background: var(--raised); border: 1px solid var(--line); border-radius: 8px;
+    padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow);
+  }
+  .card h3 { font-family: var(--display); font-weight: 600; font-size: 1.18rem; margin: 0; letter-spacing: -0.01em; }
+  .card .tagline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent-ink); margin: 0; }
+  .card p { margin: 0; font-size: 15.5px; line-height: 1.55; }
+  .metrics { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 2px 0 0; padding: 0; }
+  .metrics li {
+    font-family: var(--mono); font-size: 11.5px; font-variant-numeric: tabular-nums;
+    padding: 3px 8px; border: 1px solid var(--line); border-left: 2px solid var(--accent);
+    background: var(--surface); border-radius: 2px;
+  }
+  .metrics li.sig { border-left-color: var(--signal); }
+  .stack { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.6; }
+  .card-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: auto; padding-top: 6px; font-family: var(--mono); font-size: 12px; }
+  .card-links a { text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+  .card-links a:hover { border-bottom-color: var(--accent); }
+  .card-links a::after { content: " ↗"; color: var(--faint); }
+
+  /* ---------- timeline ---------- */
+  .job { display: grid; grid-template-columns: 164px 1fr; gap: 10px 30px; padding-block: 24px; border-bottom: 1px solid var(--line); }
+  .job:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .when { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 5px; }
+  .org { font-family: var(--display); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.01em; }
+  .role-line { font-size: 0.95rem; color: var(--muted); margin-bottom: 4px; }
+  .job ul { margin: 10px 0 0; padding-left: 18px; }
+  .job li { margin-bottom: 8px; max-width: 64ch; }
+  .job li::marker { color: var(--accent); }
+
+  /* ---------- two column blocks ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; }
+  .panel.paper-top { border-top: 2px solid var(--signal); }
+  .panel h3 { font-family: var(--display); font-weight: 600; font-size: 1.05rem; margin: 0 0 6px; }
+  .panel .meta { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+  .panel p { margin: 8px 0 0; font-size: 15.5px; }
+  .degree { font-family: var(--display); font-weight: 600; font-size: 1.05rem; }
+  .courses { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.75; margin-top: 8px; }
+
+  /* ---------- skills ---------- */
+  .kit-row { display: grid; grid-template-columns: 136px 1fr; gap: 6px 24px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--line); }
+  .kit-row:last-child { border-bottom: none; }
+  .kit-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-family: var(--mono); font-size: 12px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 2px; background: var(--surface); }
+
+  .leadership { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .leadership li { display: flex; gap: 12px; align-items: baseline; }
+  .leadership .mark { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; }
+
+  /* ---------- contact ---------- */
+  .contact-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; font-family: var(--mono); font-size: 13.5px; margin-top: 16px; }
+  .copy-btn {
+    font-family: var(--mono); font-size: 12px; background: var(--accent); color: var(--paper);
+    border: 1px solid var(--accent); border-radius: 3px; padding: 5px 11px; cursor: pointer;
+  }
+  .copy-btn:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  footer { padding-block: 30px 46px; font-family: var(--mono); font-size: 11.5px; color: var(--faint); border-top: 1px solid var(--line); }
+
+  @media (max-width: 820px) {
+    .grid, .two { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .job, .kit-row { grid-template-columns: 1fr; }
+    .when { padding-top: 0; }
+    .nav-links a { padding: 5px 7px; font-size: 10.5px; }
+    .hero { padding-block: 40px 30px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">PRIYANKA<span>.</span>MORE</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <header class="hero" id="top">
+    <p class="eyebrow">Stony Brook, NY · open to relocation</p>
+    <h1>Priyanka More</h1>
+    <p class="lede">Software engineer building <strong>AI systems and the backend infrastructure behind them</strong> — with the measurement discipline to prove they work.</p>
+
+    <div class="badges">
+      <span class="badge live">Available January 2027</span>
+      <span class="badge">AI / LLM Engineering</span>
+      <span class="badge">Backend &amp; Platform</span>
+      <span class="badge">Forward Deployed</span>
+    </div>
+
+    <svg class="trace" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 30 H80 V10 H180 V30 H280 V10 H380 V30 H480 V10 H580 V30 H680 V10 H780 V30 H880 V10 H1000"
+            fill="none" stroke="var(--accent)" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+      <path d="M0 36 H1000" fill="none" stroke="var(--line)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </svg>
+
+    <div class="stats">
+      <div class="stat"><b>2 yrs</b><span>Industry engineering</span></div>
+      <div class="stat"><b>5M+</b><span>Events/day shipped</span></div>
+      <div class="stat"><b>1M+</b><span>Customers served</span></div>
+      <div class="stat"><b>2</b><span>Published papers</span></div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="sec-head">
+      <h2>Selected work</h2>
+      <span class="sec-note">8 projects · live demos where they exist</span>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter projects by area">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" type="button" data-filter="ai" aria-pressed="false">AI &amp; ML</button>
+      <button class="filter" type="button" data-filter="backend" aria-pressed="false">Backend &amp; Systems</button>
+      <button class="filter" type="button" data-filter="fullstack" aria-pressed="false">Full-Stack</button>
+      <button class="filter" type="button" data-filter="data" aria-pressed="false">Data</button>
+    </div>
+
+    <div class="grid" id="project-grid">
+
+      <article class="card" data-areas="ai fullstack">
+        <p class="tagline">Multi-agent retrieval</p>
+        <h3>RegGuard</h3>
+        <p>Answers regulatory compliance questions across five financial frameworks. A separate validation agent checks every answer against its source documents and retries anything below a confidence threshold — in compliance, a confident wrong answer is worse than no answer.</p>
+        <ul class="metrics">
+          <li>92% factual accuracy</li>
+          <li class="sig">−70% research time</li>
+        </ul>
+        <p class="stack">LangGraph · GPT-4o · ChromaDB · FastAPI · React · Docker</p>
+        <div class="card-links">
+          <a href="https://regulatory-qa.vercel.app">Live demo</a>
+          <a href="https://github.com/Priya8975/regulatory-qa">Source</a>
+        </div>
+      </article>
+
+      <article class="card" data-areas="backend">
+        <p class="tagline">Distributed delivery</p>
+        <h3>HookRelay</h3>
+        <p>A webhook delivery platform built around the failure cases: a 100-goroutine worker pool over Redis sorted-set queues, per-subscriber circuit breakers, sliding-window rate limiters as atomic Lua, exponential backoff, and a dead letter queue for what never succeeds.</p>
+        <ul class="metrics">
+          <li>95 deliveries/sec</li>
+          <li class="sig">at-least-once, 1,000+ endpoints</li>
+          <li>26 race tests</li>
+        </ul>
+        <p class="stack">Go · Redis · Lua · React · WebSocket · GitHub Actions</p>
+        <div class="card-links">
+          <a href="https://github.com/Priya8975/webhook-delivery-system">Source</a>
+        </div>
+      </article>
+
+      <article class="card" data-areas="fullstack ai">
+        <p class="tagline">Shipped product</p>
+        <h3>Resume Easy UI</h3>
+        <p>Built because tailoring a resume per application meant duplicating the document or rewriting it. One master resume holds every bullet; each tailored version stores only overrides, so a fix propagates everywhere. OpenAI scores each bullet against a posting and flags what fits on one page.</p>
+        <ul class="metrics">
+          <li>1 master, many versions</li>
+          <li class="sig">LaTeX → PDF in-browser</li>
+        </ul>
+        <p class="stack">React · TypeScript · Zustand · Tailwind · OpenAI API · LaTeX</p>
+        <div class="card-links">
+          <a href="https://resume-easy-ui.vercel.app">Live demo</a>
+          <a href="https://github.com/Priya8975/Resume_Easy_UI">Source</a>
+        </div>
+      </article>
+
+      <article class="card" data-areas="data ai">
+        <p class="tagline">Pricing &amp; risk models</p>
+        <h3>RiskMap</h3>
+        <p>Models over 1.5M+ flood insurance claims from OpenFEMA, Census ACS and FRED. Gamma and Tweedie GLMs for claim severity, gradient boosting for county-level uninsurability risk, SHAP for explanation, robustness checked across 16 sensitivity configurations with geographic and temporal validation.</p>
+        <ul class="metrics">
+          <li>1.5M+ claims · 3,200 counties</li>
+          <li class="sig">AUC-ROC 0.83</li>
+        </ul>
+        <p class="stack">Python · scikit-learn · statsmodels · SARIMA · SHAP · Streamlit</p>
+        <div class="card-links">
+          <a href="https://priya8975-climate-risk-insurance.streamlit.app/">Live demo</a>
+          <a href="https://github.com/Priya8975/climate-risk-insurance">Source</a>
+        </div>
+      </article>
+
+      <article class="card" data-areas="backend fullstack">
+        <p class="tagline">Event-driven alerting</p>
+        <h3>CampusAlert</h3>
+        <p>Emergency alerting on a three-broker Kafka cluster with a Redis SETNX deduplication pipeline, geo-radius enrichment and GraphQL subscriptions, instrumented end to end with Prometheus and Grafana.</p>
+        <ul class="metrics">
+          <li>3,400+ recipients in under 2s</li>
+          <li class="sig">zero duplicate alerts</li>
+        </ul>
+        <p class="stack">Java · Spring Boot · Kafka · PostgreSQL · Redis · GraphQL · Docker</p>
+        <div class="card-links">
+          <a href="https://github.com/Priya8975/campus-safety-alert-system">Source</a>
+        </div>
+      </article>
+
+      <article class="card" data-areas="ai">
+        <p class="tagline">Accessible speech</p>
+        <h3>ClearVoice</h3>
+        <p>Whisper fine-tuned for dysarthric speech, so speakers whom ordinary voice systems fail are understood anyway. Personalized models went considerably further than the general one.</p>
+        <ul class="metrics">
+          <li>−50% word error rate</li>
+          <li class="sig">−80% personalized</li>
+        </ul>
+        <p class="stack">PyTorch · Hugging Face Transformers · OpenAI Whisper</p>
+      </article>
+
+      <article class="card" data-areas="fullstack data">
+        <p class="tagline">IoT health monitoring</p>
+        <h3>VitalWatch</h3>
+        <p>Real-time patient monitoring: IoT sensors stream vitals over MQTT to a Flask backend, a React Native app for patients and a web portal for doctors, with ML-driven disease prediction on top. Published in IJRASET.</p>
+        <ul class="metrics">
+          <li class="sig">+15% early detection accuracy</li>
+        </ul>
+        <p class="stack">Python · Flask · React Native · React · Firebase · MQTT</p>
+        <div class="card-links">
+          <a href="https://www.ijraset.com/research-paper/iot-based-health-monitoring-system">Paper</a>
+        </div>
+      </article>
+
+      <article class="card" data-areas="backend fullstack">
+        <p class="tagline">Cross-device control</p>
+        <h3>CtrlAnywhere</h3>
+        <p>An Android app that drives a PC's mouse and keyboard over a JSON command protocol, paired with a cross-platform Electron controller and FTP file sharing.</p>
+        <ul class="metrics">
+          <li>under 50ms latency</li>
+          <li class="sig">−40% connection failures</li>
+        </ul>
+        <p class="stack">Java · Android · Node.js · Electron</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <span class="sec-note">2 years industry · 1 research role</span>
+    </div>
+
+    <div class="job">
+      <div class="when">Jul 2025 — present</div>
+      <div>
+        <div class="org">Stony Brook University</div>
+        <div class="role-line">Graduate Research Assistant · AI-driven design automation</div>
+        <ul>
+          <li>Pair Claude and GPT with multi-objective Bayesian optimization to generate and evaluate power-converter designs, cutting a multi-month design cycle to hours at 97% efficiency.</li>
+          <li>Build a physics-grounded dataset of DC-DC converter topologies: graph representations, SymPy-derived state-space averaged models verified against textbook conversion ratios, and LTspice simulation.</li>
+          <li>Analyze thousands of optimization trials across efficiency, ripple, error and device stress to steer prompting strategy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Jul 2023 — Jul 2024</div>
+      <div>
+        <div class="org">Persistent Systems</div>
+        <div class="role-line">Software Engineer · Pune, India</div>
+        <ul>
+          <li>Built CodeHealth, an LLM platform on AWS with Azure OpenAI and retrieval-augmented generation that let teams query repository health and vulnerabilities in plain English, cutting manual review time 60%.</li>
+          <li>Implemented the Kafka pipeline behind it, processing 5M+ scan events a day across parallel security, quality and dependency jobs.</li>
+          <li>Shipped CI/CD quality gates and inline pull request annotations into GitHub Actions and GitLab CI, cutting production failures 60%.</li>
+          <li>Enforced circuit breakers and fallbacks across third-party vulnerability feeds, holding 99.9% availability, and tuned MongoDB indexing and sharding for 35% faster queries.</li>
+          <li>Wrote the Bash tooling that deployed the scanner into air-gapped enterprise environments, cutting setup time 50%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Jul 2022 — Jul 2023</div>
+      <div>
+        <div class="org">S3 IT Service</div>
+        <div class="role-line">Software Engineer · Pune, India</div>
+        <ul>
+          <li>Built Flask services and Angular progressive web apps for a B2B rural commerce platform serving 1M+ customers.</li>
+          <li>Shipped a Random Forest credit-scoring model into the sales workflow, cutting creditworthiness evaluation time 25%.</li>
+          <li>Designed a clustering and correlation recommendation engine that lifted product discovery 30%.</li>
+          <li>Deployed Docker and Kubernetes pipelines for zero-downtime releases, cutting release cycle time 40%.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="sec-head">
+      <h2>Research &amp; education</h2>
+      <span class="sec-note">MS Computer Engineering, Dec 2026</span>
+    </div>
+
+    <div class="two" style="margin-bottom:16px;">
+      <div class="panel paper-top">
+        <h3>Automated Design of Hybrid Switched-Capacitor Converters via Bayesian-Optimized LLM Prompting</h3>
+        <span class="meta">IEEE MWSCAS 2026 · co-first author</span>
+        <p>Pairs large language models with multi-objective Bayesian optimization to generate converter topologies and evaluate them against efficiency, ripple and device-stress constraints.</p>
+      </div>
+      <div class="panel paper-top">
+        <h3>IoT-Based Health Monitoring System</h3>
+        <span class="meta">IJRASET</span>
+        <p>An IoT sensor framework for real-time patient monitoring with machine-learning-driven disease prediction.</p>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="panel">
+        <div class="degree">Stony Brook University</div>
+        <span class="meta">MS Computer Engineering · Aug 2024 — Dec 2026 · GPA 3.9/4.0</span>
+        <div class="courses">Distributed Systems · Machine Learning · Natural Language Processing · Deep Learning · Computer Vision · Networking Algorithms · Cyber Physical Systems</div>
+      </div>
+      <div class="panel">
+        <div class="degree">Savitribai Phule Pune University</div>
+        <span class="meta">BE Computer Science · Aug 2020 — May 2023 · GPA 3.8/4.0</span>
+        <div class="courses">Data Structures &amp; Algorithms · Operating Systems · Database Systems · Cloud Computing · High Performance Computing · Big Data Analytics</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <h2>Toolkit</h2>
+      <span class="sec-note">what I reach for</span>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-label">Languages</div>
+      <div class="chips"><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">Java</span><span class="chip">Go</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">C++</span><span class="chip">Bash</span></div>
+    </div>
+    <div class="kit-row">
+      <div class="kit-label">AI &amp; ML</div>
+      <div class="chips"><span class="chip">PyTorch</span><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">RAG</span><span class="chip">Azure OpenAI</span><span class="chip">GPT-4o</span><span class="chip">Claude</span><span class="chip">ChromaDB</span><span class="chip">Hugging Face</span><span class="chip">scikit-learn</span><span class="chip">Optuna</span></div>
+    </div>
+    <div class="kit-row">
+      <div class="kit-label">Backend</div>
+      <div class="chips"><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Spring Boot</span><span class="chip">Node.js</span><span class="chip">REST APIs</span><span class="chip">GraphQL</span><span class="chip">Kafka</span><span class="chip">microservices</span><span class="chip">WebSocket</span></div>
+    </div>
+    <div class="kit-row">
+      <div class="kit-label">Frontend</div>
+      <div class="chips"><span class="chip">React</span><span class="chip">Tailwind CSS</span><span class="chip">Angular</span><span class="chip">React Native</span><span class="chip">Jest</span></div>
+    </div>
+    <div class="kit-row">
+      <div class="kit-label">Data</div>
+      <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">Spark</span><span class="chip">Databricks</span></div>
+    </div>
+    <div class="kit-row">
+      <div class="kit-label">Platform</div>
+      <div class="chips"><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">GitHub Actions</span><span class="chip">GitLab CI</span><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">Linux</span></div>
+    </div>
+    <div class="kit-row">
+      <div class="kit-label">Simulation</div>
+      <div class="chips"><span class="chip">LTspice</span><span class="chip">PyLTSpice</span><span class="chip">SymPy</span><span class="chip">NetworkX</span><span class="chip">statsmodels</span><span class="chip">SHAP</span></div>
+    </div>
+
+    <div style="margin-top:34px;">
+      <div class="kit-label" style="margin-bottom:14px;">Beyond code</div>
+      <ul class="leadership">
+        <li><span class="mark">PR</span><span>Public Relations Head, Indian Graduate Student Association, Stony Brook University</span></li>
+        <li><span class="mark">TEACH</span><span>Digital Multimedia Tools Instructor, CSTEP program, Stony Brook University</span></li>
+        <li><span class="mark">WIN</span><span>Winner, intra-college Smart India Hackathon — digitized toll collection system</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <h2>Get in touch</h2>
+      <span class="sec-note">replies within a day</span>
+    </div>
+    <div class="contact-box">
+      <p style="margin:0;max-width:56ch;">I'm looking for full-time roles starting January 2027 in AI and LLM engineering, backend and platform engineering, or forward deployed engineering — the kind where I work directly with the people using what I build.</p>
+      <div class="contact-row">
+        <span id="email-text">priyamore8975@gmail.com</span>
+        <button class="copy-btn" id="copy-email" type="button">Copy email</button>
+        <a href="https://github.com/Priya8975">github.com/Priya8975</a>
+        <a href="https://www.linkedin.com/in/morepriya/">linkedin.com/in/morepriya</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Built from scratch · Instrument Sans, Public Sans, IBM Plex Mono</footer>
+</div>
+
+<script>
+  (function () {
+    // project filtering
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#project-grid .card'));
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var want = btn.getAttribute('data-filter');
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        cards.forEach(function (card) {
+          var areas = (card.getAttribute('data-areas') || '').split(' ');
+          card.hidden = !(want === 'all' || areas.indexOf(want) !== -1);
+        });
+      });
+    });
+
+    // active nav link
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (a, i) {
+            a.classList.toggle('active', sections[i] === entry.target);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(function (s) { if (s) obs.observe(s); });
+    }
+
+    // copy email
+    var btn = document.getElementById('copy-email');
+    var text = document.getElementById('email-text');
+    if (btn && text) {
+      btn.addEventListener('click', function () {
+        var value = text.textContent.trim();
+        function flash(label) {
+          btn.textContent = label;
+          setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
+        }
+        function select() {
+          var range = document.createRange();
+          range.selectNodeContents(text);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          flash('Select & copy');
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(value).then(function () { flash('Copied'); }, select);
+        } else {
+          select();
+        }
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
